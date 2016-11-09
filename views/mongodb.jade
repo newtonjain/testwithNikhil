@@ -1,0 +1,229 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the #{title} test application 
+
+  #statusOK.statusOK #{status}
+  #statusError.statusError #{err}
+  #statusRecordCount.statusRecordCount Current count of records is #{count}
+  
+  #dbconnect.dbaction
+    #dbconnectHeader.dbactionHeader Connect
+    #dbconnectBody.dbactionBody
+      form(name="connect", action="/mongodb/connect", method="get")
+        input(type="submit", value="connect to mongDB!")
+  p
+
+  #recreateCollection.dbaction
+    #recreateCollectionHeader.dbactionHeader Recreate MongoDB Collection
+      #recreateCollectionBody.dbactionBody
+        form(name="recreateCollection", action="/mongodb/recreateCollection", method="get")
+          div.horizontal
+          input(type="submit", value="recreate!")
+  p
+    
+  #insertRecords.dbaction
+    #insertRecordsHeader.dbactionHeader Insert Records
+    #insertRecordsBody.dbactionBody
+      form(name="insertRecords", action="/mongodb/insert", method="get")
+        div.horizontal 
+          span.horizontal Number of records to insert:
+          input(type="text", name="numRecords")
+        br
+        div.horizontal
+          span use callbacks: 
+          input(type="radio", name="usePromise", value="false", checked="true")
+        br
+        div.horizontal
+          span use promises
+          input(type="radio", name="usePromise", value="true")
+        br
+        input(type="submit", value="insert records")
+  p
+  
+
+  #getRecordsTest.dbaction
+    #getRecordsTestHeader.dbactionHeader Test Delete
+    #getRecordsTestBody.dbactionBody
+      div.sectionHeader Choose delete method
+      div.sectionGroup  
+        div.horizontal
+          input(type="radio", name="deleteType", value="deleteOne")
+          span deleteOne
+          span (            
+          a(target="_blank", href="http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#deleteOne") api docs
+          span , 
+          a(target="_blank", href="https://github.com/mongodb/node-mongodb-native/blob/2.1/lib/collection.js#L2118-L2135") source code
+          span )
+        br
+        div.horizontal
+          input(type="radio", name="deleteType", value="deleteMany")
+          span deleteMany
+          span (            
+          a(target="_blank", href="http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#deleteMany") api docs
+          span , 
+          a(target="_blank", href="https://github.com/mongodb/node-mongodb-native/blob/2.1/lib/collection.js#L2118-L2135") source code
+          span )
+        br
+        div.horizontal
+          input(type="radio", name="deleteType", value="findOneAndDelete", checked="true")
+          span findOneAndDelete
+          span (            
+          a(target="_blank", href="http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findOneAndDelete") api docs
+          span , 
+          a(target="_blank", href="https://github.com/mongodb/node-mongodb-native/blob/2.1/lib/collection.js#L2118-L2135") source code
+          span )
+        br
+        div
+          div query:                 
+          textarea(rows="4", cols="50", id="deleteQuery")
+        div  
+          div options:                 
+          textarea(rows="4", cols="50", id="deleteOptions")
+        div(id="deleteProjectionDiv")
+          div projection:                 
+          textarea(rows="4", cols="50", id="deleteProjection")
+        div(id="deleteSortDiv")  
+          div sort:                 
+          textarea(rows="4", cols="50", id="deleteSort")  
+        button(id="deleteButton", type="button") delete!
+
+  
+  #getRecordsTest.dbaction
+    #getRecordsTestHeader.dbactionHeader Test query
+    #getRecordsTestBody.dbactionBody
+      form(name="insertRecords", action="/mongodb/query", method="get")
+        div.sectionHeader Choose Query Method
+        div.sectionGroup
+          div.horizontal
+            input(type="radio", name="queryType", value="find", checked="true")
+            span find
+            span (            
+            a(target="_blank", href="http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#find") api docs
+            span , 
+            a(target="_blank", href="https://github.com/mongodb/node-mongodb-native/blob/2.1/lib/collection.js#L169-L180") source code
+            span )
+          br
+          div.horizontal
+            input(type="radio", name="queryType", value="findAndModify")
+            span findAndModify
+            span (            
+            a(target="_blank", href="http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findAndModify") api docs
+            span , 
+            a(target="_blank", href="https://github.com/mongodb/node-mongodb-native/blob/2.1/lib/collection.js#L2280-L2306") source code
+            span )
+          br
+          div.horizontal
+            input(type="radio", name="queryType", value="findAndRemove")
+            span findAndRemove
+            span (            
+            a(target="_blank", href="http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findAndRemove") api docs
+            span , 
+            a(target="_blank", href="https://github.com/mongodb/node-mongodb-native/blob/2.1/lib/collection.js#L2379-L2397") source code
+            span )          
+          br
+          div.horizontal
+            input(type="radio", name="queryType", value="findOne")
+            span findOne
+            span (            
+            a(target="_blank", href="http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findOne") api docs
+            span , 
+            a(target="_blank", href="https://github.com/mongodb/node-mongodb-native/blob/2.1/lib/collection.js#L1318-L1334") source code
+            span )          
+          br
+          div.horizontal
+            input(type="radio", name="queryType", value="findOneAndReplace")
+            span findOneAndReplace
+            span (            
+            a(target="_blank", href="http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findOneAndReplace") api docs
+            span , 
+            a(target="_blank", href="https://github.com/mongodb/node-mongodb-native/blob/2.1/lib/collection.js#L2169-L2186") source code
+            span )
+          br
+          div.horizontal
+            input(type="radio", name="queryType", value="findOneAndUpdate")
+            span findOneAndUpdate
+            span (            
+            a(target="_blank", href="http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findOneAndUpdate") api docs
+            span , 
+            a(target="_blank", href="http://mongodb.github.io/node-mongodb-native/2.1/api/Collection.html#findOneAndUpdate") source code
+            span )
+          br
+        div.sectionHeader
+          span Enter query
+        div.sectionGroup
+          div.horizontal
+            div.inputGroup
+              span.horizontal Enter MongoDB query text
+              input(type="text", id="queryText")
+            div.inputGroup        
+              #exampleQueriesHeader.exampleQueriesHeader
+                div Example Queries
+              #exampleQueries.exampleQueries
+                list
+                  li {"a":"b22fa62f-a872-406b-95d3-61e902b8d69f"}
+                  li see more examples at 
+                    a(target="_blank", href="https://docs.mongodb.org/manual/tutorial/query-documents/") the mongo tutorial 
+        div(id="sortSection")
+          div.sectionHeader
+            span Enter Sort
+          div.sectionGroup
+            div.inputGroup
+              span.horizontal Enter MongoDB sort options
+              input(type="text", id="sort")
+            div.inputGroup
+              #sortExamplesHeader.exampleQueriesHeader
+                div Sort Examples
+              #sortExamples.exampleQueries
+                 span {"a":"1"}
+        div(id="updateSection")
+          div.sectionHeader
+            span(id="updateSectionHeader") Enter Update
+          div.sectionGroup
+            div.inputGroup
+              span.horizontal Enter MongoDB Update command
+              input(type="text", id="updateSet")
+            div.inputGroup
+              #sortExamplesHeader.exampleQueriesHeader
+                div Update Examples
+              #sortExamples.exampleQueries
+                 a(target="_blank", href="https://docs.mongodb.org/manual/reference/operator/update/") update operator docs
+                 span {$set: "a":"1"}
+
+        div(id="optionsSection")
+            div.sectionHeader
+              span Enter Options
+            div.sectionGroup
+              div.inputGroup
+                div
+                  span.horizontal projection:                 
+                  input(type="text", id="projection")
+                div  
+                  span.horizontal maxTimeMs:
+                  input(type="text", id="maxTimeMS")
+                div
+                  span.horizontal upsert:                  
+                  input(type="radio", name="upsert", value="true")
+                  span true
+                  input(type="radio", name="upsert", value="false")
+                  span false
+                div
+                  span.horizontal returnOriginal:
+                  input(type="radio", name="returnOriginal", value="true")
+                  span true
+                  input(type="radio", name="returnOriginal", value="false")
+                  span false
+        
+        
+        button(id="queryButton", type="button") query!
+  #queryResults.dbaction
+    #queryResultsHeader.dbactionHeader Query Results
+    #queryResultsBody.dbactionBody
+      #queryStatusOK.statusOK #{status}
+      #queryStatusError.statusError #{err}
+      #queryResultsDiv
+            
+  script(src="https://code.jquery.com/jquery-1.10.2.js")
+  script(src="/mongodb-client-side.js")
+

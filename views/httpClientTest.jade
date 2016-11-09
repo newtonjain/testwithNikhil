@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 Welcome to the Glimpse Http Client logging test page 
+
+  p status is:
+  span.httpClientDemoBold #{status}
+  
+  div.inputbox
+    form(name="submitAction", action="/httpClientTest/callHello", method="get")
+      p Enter something to send to the echo endpoint
+      input(type="text", name="echoString")
+      p submit http request
+      input(type="submit", value="say hello")

@@ -1,0 +1,102 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+.statusOK {
+    color: green;
+}
+
+.statusError {
+    color: red;
+    font-size: 1.0em;
+    font-style:italic;
+}
+
+.horizontal {
+    display:inline
+}
+
+.dbaction {
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.dbactionHeader {
+    font-size: 1.5em;
+}
+
+.dbactionBody {
+    font-size: 1.5em;
+    padding: 5px;
+    margin: 5px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.resultTable {
+    border-collapse: collapse;
+}
+
+.headerRow {
+    font-weight: bold; 
+}
+
+.headerCell {
+    border-style: solid;
+    margin:1px;
+    padding: 10px;
+    border-width:2px;
+}
+
+.resultRow {
+}
+
+.sectionHeader{
+    font-weight:bold;
+}
+
+.sectionGroup {
+    border-style:solid;
+    margin:1px;
+    padding: 5px;
+    border-width:1px;
+}
+
+.resultCell {
+    border-style: dotted;
+    font-weight:normal;
+    margin:1px;
+    padding: 10px;
+    border-width:2px;
+}
+
+.exampleQueriesHeader {
+    font-style:italic; 
+}
+
+.exampleQueries {
+    padding: 5px;
+    margin: 5px;
+    font-style:normal;
+}
+
+
+.header {
+    height: 20px;
+    color: 99FFFF;
+}
+
+.httpClientDemoBold {
+    font-size: 1.5em;
+    padding: 5px;
+    margin: 5px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-weight: bold
+}

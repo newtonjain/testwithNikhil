@@ -1,0 +1,50 @@
+doctype html
+html
+  head
+
+    if scriptPath != undefined
+      script(src='#{scriptPath}', async=true)
+   
+    link(rel='stylesheet', href='/stylesheets/style.css')
+        
+  body
+    block content
+
+      h1 Glimpse Console Logging test page 
+      h2
+        | Check out
+        a(href="/glimpse/client", target="_blank") glimpse 
+        | for #{status}
+
+      div
+        p
+        a(href="/consoleLoggingTest/basic") Basic Console Logging statements
+
+      div
+        p
+        a(href="/consoleLoggingTest/colors") Logging with color
+
+      div
+        p
+        a(href="/consoleLoggingTest/unicodeCharacters") Unicode Characters
+      div
+        p
+        a(href="/consoleLoggingTest/clientSideGrouping") Client Side Grouping
+      div
+        p
+        a(href="/consoleLoggingTest/clientSideProfile") Client Side Profile
+      div
+        p
+        a(href="/consoleLoggingTest/timing") Server Side and Client Side Timing (takes 5 seconds!)
+      div
+        p
+        a(href="/consoleLoggingTest/count") Client Side Count
+      div
+        p
+        a(href="/consoleLoggingTest/dir") dir/dirxml  (dirxml is browser only)
+      div
+        p
+        a(href="/consoleLoggingTest/table") Client Side table
+
+
+
